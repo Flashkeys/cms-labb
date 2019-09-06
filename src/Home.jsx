@@ -35,6 +35,11 @@ const Home = () => {
                 <Link to="/">Home</Link>
                 <Link to="/Arthurs">Arthurs</Link>
             </div>
+            <div className="pagg">
+                <button onClick={() => setPage(page - 1)}>&lt;</button>
+                <input type="number" min={1} max={max} value={page} />
+                <button onClick={() => setPage(page + 1)}>&gt;</button>
+            </div>
             <div className="posts">
                 <table>
                     <thead>
@@ -57,9 +62,6 @@ const Home = () => {
                     </tbody>
                 </table>
             </div>
-            <button onClick={() => setPage(page - 1)}>&lt;</button>
-            <input type="number" min={1} max={max} value={page}/>
-            <button onClick={() => setPage(page + 1)}>&gt;</button>
         </div>
     )
 }

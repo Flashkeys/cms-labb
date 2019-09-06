@@ -1,28 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
 const Blogg = (props) => {
-    const results = props.results;
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('id');
+    const [article, setArticle] = useState(null);
 
-    const data = results.filter(iteam => iteam._id === myParam)[0];
+    useEffect(() => {
+        axios.get(`http://192.168.99.100:8080/api/collections/get/Blogpost?filter[_id]=${props.match.params.id}`)
+            .then((res) => setArticle(res.data.entries[0]));
 
-    console.log("this one");
-    console.log(results[myParam]);
-    console.log(data);
-    if (!data) {
-        return null
-    }
+    }, []);
+
+    console.log(article);
     return (
         <div>
-            <ul>
-                <li className="title-data">{data.Title}</li>
-                <li className="name-data">{data.Name}</li>
-                <li className="date-data">{data.Date}</li>
-                <li className="post-data">{data.Post}</li>
-            </ul>
+            <div className="text-center">
+                <h2>Blogg post</h2>
+                <br></br>
+                <Link to="/">Home</Link>
+                <Link to="/Arthurs">Arthurs</Link>
+            </div>
+            {!article ? <p>Hämtar...</p> : <ul>
+                <li className="title-data">{article.Title}</li>
+                <li className="name-data">{article.Name.display}</li>
+                <li className="date-data">{article.Date}</li>
+                <li className="post-data"><ReactMarkdown source={article.Post} /> </li>
+            </ul>}
+
         </div>
     )
 }

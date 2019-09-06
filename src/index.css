@@ -53,3 +53,12 @@ a:hover{
   border-bottom: 2px solid orangered;
   cursor: pointer;
 }
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  width: 40%;
+  padding: 10px;
+}

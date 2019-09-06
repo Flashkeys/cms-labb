@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
 
@@ -27,6 +27,11 @@ const Arthurs = () => {
   return (
     <div className="text-center">
       <h2>Arthur page</h2>
+      <div className="header">
+        <Link to="/">Home</Link>
+        <Link to="/Arthurs">Arthurs</Link>
+      </div>
+      <br></br>
       <div className="center">
         <table>
           <tr>
@@ -36,7 +41,7 @@ const Arthurs = () => {
           </tr>
           {results.map((result) =>
             <tr key={result._id}>
-              <td className="box">{result.Name}</td>
+              <td className="box">{result.Name.display}</td>
               <td className="box">{result.Desc}</td>
               <td className="box"><img src={"http://192.168.99.100:8080/" + result.Image.path}></img></td>
             </tr>

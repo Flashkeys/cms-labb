@@ -46,14 +46,14 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {results.map((result) =>
+                        {results.map((result) => (
                             <tr key={result._id}>
                                 <td>{result.Title}</td>
                                 <td>{result.Name.display}</td>
                                 <td>{result.Date}</td>
                                 <td><Link to={`/Blogg/${result._id}`}>More info</Link></td>
                             </tr>
-                        )}
+                        ))}
                     </tbody>
                 </table>
             </div>
